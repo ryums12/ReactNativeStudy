@@ -3,10 +3,13 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow strict-local
+ * @flow strict-lo
  */
 
-import React from 'react';
+import * as React from 'react';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import {
     SafeAreaView,
     StyleSheet,
@@ -15,38 +18,95 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-const App = () => {
+const ButtonToMain = () => {
+    const navigation = useNavigation();
+    return (
+        <TouchableOpacity style={styles.button_main}
+                          onPress={() => navigation.navigate('Main')}>
+            <Text style={styles.button_text}>
+                Main
+            </Text>
+        </TouchableOpacity>
+    );
+};
 
-    const onPress = (msg) => alert('Click : ' + msg);
+const ButtonToDetail = () => {
+    const navigation = useNavigation();
+    return (
+        <TouchableOpacity style={styles.button_main}
+                          onPress={() => navigation.navigate('Details')}>
+            <Text style={styles.button_text}>
+                Details
+            </Text>
+        </TouchableOpacity>
+    );
+};
 
+const ButtonToBack = () => {
+    const navigation = useNavigation();
+    return (
+        <TouchableOpacity style={styles.button_main}
+                          onPress={() => navigation.goBack()}>
+            <Text style={styles.button_text}>
+                Back
+            </Text>
+        </TouchableOpacity>
+    );
+};
+
+const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.main}>
                 <Text style={styles.title}>
-                    Main
+                    Main Page
                 </Text>
-                <TouchableOpacity
-                    style={styles.button_main}
-                    onPress={() => {
-                        onPress('Main')
-                    }}
-                >
-                    <Text style={styles.button_text}>
-                        Main
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.button_main}
-                    onPress={() => {
-                        onPress('Go to')
-                    }}
-                >
-                    <Text style={styles.button_text}>
-                        Go to
-                    </Text>
-                </TouchableOpacity>
+                <ButtonToMain />
+                <ButtonToDetail />
             </View>
         </SafeAreaView>
+    );
+};
+
+const MainScreen = () => {
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.main}>
+                <Text style={styles.title}>
+                    Main Page
+                </Text>
+                <ButtonToDetail />
+                <ButtonToBack />
+            </View>
+        </SafeAreaView>
+    );
+};
+
+const DetailsScreen = () => {
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.main}>
+                <Text style={styles.title}>
+                    Detail Page
+                </Text>
+                <ButtonToDetail />
+                <ButtonToBack />
+            </View>
+        </SafeAreaView>
+    );
+};
+
+const Stack = createStackNavigator();
+
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Main" component={MainScreen} />
+                <Stack.Screen name="Details" component={DetailsScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 };
 
@@ -80,6 +140,5 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 });
-
 
 export default App;
