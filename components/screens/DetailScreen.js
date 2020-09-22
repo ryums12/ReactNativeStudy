@@ -1,21 +1,19 @@
 import {SafeAreaView, Text, View} from 'react-native';
-import ButtonToMain from './ButtonToMain';
-import ButtonToDetail from './ButtonToDetail';
-import main from '../styles/main';
+import ButtonToBack from '../navigations/ButtonToBack';
 import React from 'react';
+import main from '../../styles/main';
 
-const HomeScreen = () => {
+const DetailScreen = () => {
     return (
         <SafeAreaView style={main.container}>
             <View style={main.main}>
                 <Text style={main.title}>
-                    Home
+                    Detail Page
                 </Text>
-                <ButtonToMain />
-                <ButtonToDetail />
+                <ButtonToBack />
             </View>
         </SafeAreaView>
     );
 };
 
-export default HomeScreen;
+export default DetailScreen;

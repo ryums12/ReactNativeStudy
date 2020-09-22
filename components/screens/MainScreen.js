@@ -1,7 +1,7 @@
 import {SafeAreaView, Text, View} from 'react-native';
-import ButtonToBack from './ButtonToBack';
+import ButtonToBack from '../navigations/ButtonToBack';
 import React from 'react';
-import main from '../styles/main';
+import main from '../../styles/main';
 
 const MainScreen = () => {
     return (
