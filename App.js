@@ -13,6 +13,8 @@ import { navigationRef, isReadyRef } from './utils/NavigationService';
 import HomeScreen from './components/screens/HomeScreen';
 import MainScreen from './components/screens/MainScreen';
 import DetailScreen from './components/screens/DetailScreen';
+import FormScreen from './components/screens/FormScreen';
+import ResultScreen from './components/screens/ResultScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +36,8 @@ const App = () => {
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="Main" component={MainScreen} />
                 <Stack.Screen name="Detail" component={DetailScreen} />
+                <Stack.Screen name="Form" component={FormScreen}/>
+                <Stack.Screen name="Result" component={ResultScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -1,4 +1,4 @@
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import ButtonToBack from '../navigations/ButtonToBack';
 import React from 'react';
 import main from '../../styles/main';
@@ -6,11 +6,16 @@ import main from '../../styles/main';
 const MainScreen = () => {
     return (
         <SafeAreaView style={main.container}>
-            <View style={main.main}>
+            <View style={main.header}>
                 <Text style={main.title}>
                     Main Page
                 </Text>
-                <ButtonToBack />
+            </View>
+            <ScrollView>
+
+            </ScrollView>
+            <View style={{alignItems: 'center'}}>
+                <ButtonToBack/>
             </View>
         </SafeAreaView>
     );

@@ -1,21 +1,28 @@
-import {SafeAreaView, Text, View} from 'react-native';
-import ButtonToMain from '../navigations/ButtonToMain';
-import ButtonToDetail from '../navigations/ButtonToDetail';
+import {SafeAreaView, Text, View, StyleSheet} from 'react-native';
+import ButtonToNavi from '../navigations/ButtonToNavi';
 import main from '../../styles/main';
 import React from 'react';
 
 const HomeScreen = () => {
     return (
-        <SafeAreaView style={main.container}>
+        <SafeAreaView style={[main.container, styles.center]}>
             <View style={main.main}>
                 <Text style={main.title}>
                     Home
                 </Text>
-                <ButtonToMain />
-                <ButtonToDetail />
+                <ButtonToNavi navi={'Main'}/>
+                <ButtonToNavi navi={'Detail'}/>
+                <ButtonToNavi navi={'Form'}/>
             </View>
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+   center: {
+       alignItems: 'center',
+       justifyContent: 'center'
+   }
+});
 
 export default HomeScreen;

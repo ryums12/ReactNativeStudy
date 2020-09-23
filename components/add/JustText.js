@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const JustText = (props) => {
     return (
@@ -15,28 +15,15 @@ const JustText = (props) => {
     );
 }
 
-// class JustText extends Component {
-//     render() {
-//         const arr = this.props.arr;
-//         return (
-//             arr.map((num ,index) => (
-//                 <View style={styles.container_test} key={index}>
-//                     <Text style={styles.style_text}>{num}</Text>
-//                 </View>
-//             ))
-//         );
-//     }
-// }
-
-
 const styles = StyleSheet.create({
     container_test: {
-        width: '100%',
+        width: '50%',
         height: 30,
         backgroundColor: 'gray',
         marginTop: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius: 20
     },
     style_text: {
         color: 'white',

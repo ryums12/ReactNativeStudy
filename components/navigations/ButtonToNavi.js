@@ -3,15 +3,15 @@ import {Text, TouchableOpacity} from 'react-native';
 import * as NavigationService from '../../utils/NavigationService';
 import button from '../../styles/button';
 
-const ButtonToDetail = () => {
+const ButtonToNavi = (props) => {
     return (
         <TouchableOpacity style={button.button_main}
-                          onPress={() => NavigationService.navigate('Detail')}>
+                          onPress={() => NavigationService.navigate(props.navi)}>
             <Text style={button.button_text}>
-                Detail
+                {props.navi}
             </Text>
         </TouchableOpacity>
     );
 };
 
-export default ButtonToDetail;
+export default ButtonToNavi;

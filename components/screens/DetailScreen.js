@@ -1,7 +1,8 @@
-import {SafeAreaView, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Text, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import React, {Component} from 'react';
 import ButtonToBack from '../navigations/ButtonToBack';
 import JustText from '../add/JustText';
+import main from '../../styles/main';
 
 class DetailScreen extends Component {
 
@@ -23,9 +24,9 @@ class DetailScreen extends Component {
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.title}>
+            <SafeAreaView style={main.container}>
+                <View style={main.header}>
+                    <Text style={main.title}>
                         Add Component
                     </Text>
                 </View>
@@ -37,9 +38,13 @@ class DetailScreen extends Component {
                         }}>
                         <Text style={styles.add_text}>Add Component</Text>
                     </TouchableOpacity>
-                    <JustText arr={this.state.arr} delete={this.deleteComponent} />
                 </View>
-                <View style={styles.footer}>
+                <ScrollView>
+                    <View style={{alignItems: 'center'}}>
+                        <JustText arr={this.state.arr} delete={this.deleteComponent} />
+                    </View>
+                </ScrollView>
+                <View style={{alignItems: 'center'}}>
                     <ButtonToBack />
                 </View>
             </SafeAreaView>
@@ -48,18 +53,6 @@ class DetailScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-   container: {
-       flex: 1,
-   },
-   header: {
-       height: 75,
-       alignItems: 'center',
-       justifyContent: 'center'
-   },
-   title: {
-       fontSize: 24,
-       fontWeight: 'bold'
-   },
    add: {
        height: 70,
        backgroundColor: 'red',
@@ -83,12 +76,6 @@ const styles = StyleSheet.create({
    comp_text_text: {
        color: 'white',
        fontWeight: 'bold'
-   },
-   footer: {
-       position: 'absolute',
-       bottom: 0,
-       width: '100%',
-       alignItems: 'center'
    }
 });
 
