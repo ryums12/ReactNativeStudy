@@ -1,10 +1,10 @@
 import {SafeAreaView, Text, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import React, {Component} from 'react';
 import ButtonToBack from '../navigations/ButtonToBack';
-import JustText from '../add/JustText';
+import JustText from './aad/JustText';
 import main from '../../styles/main';
 
-class DetailScreen extends Component {
+class AddAndDeleteScreen extends Component {
 
     state = {
       arr: [15, 57, 80]
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
    }
 });
 
-export default DetailScreen;
+export default AddAndDeleteScreen;

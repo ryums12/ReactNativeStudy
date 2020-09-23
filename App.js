@@ -10,11 +10,12 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef, isReadyRef } from './utils/NavigationService';
-import HomeScreen from './components/screens/HomeScreen';
+import Home from './components/Home';
 import MainScreen from './components/screens/MainScreen';
-import DetailScreen from './components/screens/DetailScreen';
+import AddAndDeleteScreen from './components/screens/AddAndDeleteScreen';
 import FormScreen from './components/screens/FormScreen';
 import ResultScreen from './components/screens/ResultScreen';
+import AxiosScreen from './components/screens/AxiosScreen';
 
 const Stack = createStackNavigator();
 
@@ -33,11 +34,12 @@ const App = () => {
             }}
         >
             <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Main" component={MainScreen} />
-                <Stack.Screen name="Detail" component={DetailScreen} />
+                <Stack.Screen name="AaD" component={AddAndDeleteScreen} />
                 <Stack.Screen name="Form" component={FormScreen}/>
                 <Stack.Screen name="Result" component={ResultScreen}/>
+                <Stack.Screen name="Axios" component={AxiosScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

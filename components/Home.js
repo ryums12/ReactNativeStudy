@@ -1,9 +1,9 @@
 import {SafeAreaView, Text, View, StyleSheet} from 'react-native';
-import ButtonToNavi from '../navigations/ButtonToNavi';
-import main from '../../styles/main';
+import ButtonToNavi from './navigations/ButtonToNavi';
+import main from '../styles/main';
 import React from 'react';
 
-const HomeScreen = () => {
+const Home = () => {
     return (
         <SafeAreaView style={[main.container, styles.center]}>
             <View style={main.main}>
@@ -11,8 +11,9 @@ const HomeScreen = () => {
                     Home
                 </Text>
                 <ButtonToNavi navi={'Main'}/>
-                <ButtonToNavi navi={'Detail'}/>
-                <ButtonToNavi navi={'Form'}/>
+                <ButtonToNavi navi={'Axios'}/>
+                {/*<ButtonToNavi navi={'AaD'}/>*/}
+                {/*<ButtonToNavi navi={'Form'}/>*/}
             </View>
         </SafeAreaView>
     );
@@ -25,4 +26,4 @@ const styles = StyleSheet.create({
    }
 });
 
-export default HomeScreen;
+export default Home;
