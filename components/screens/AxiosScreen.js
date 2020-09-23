@@ -1,17 +1,21 @@
-import {SafeAreaView, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import ButtonToNavi from './navigations/ButtonToNavi';
-import main from '../styles/main';
+import {SafeAreaView, Text, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import main from '../../styles/main';
 import React from 'react';
+import ButtonToBack from '../navigations/ButtonToBack';
 
 const AxiosScreen = () => {
     return (
         <SafeAreaView style={main.container}>
-            <View style={main.main}>
-                <View style={main.header}>
-                    <Text style={main.title}>
-                        Axios
-                    </Text>
-                </View>
+            <View style={main.header}>
+                <Text style={main.title}>
+                    Axios Test Page
+                </Text>
+            </View>
+            <ScrollView>
+
+            </ScrollView>
+            <View style={{alignItems: 'center'}}>
+                <ButtonToBack />
             </View>
         </SafeAreaView>
     );
