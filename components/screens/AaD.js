@@ -4,7 +4,7 @@ import ButtonToBack from '../navigations/ButtonToBack';
 import JustText from './aad/JustText';
 import main from '../../styles/main';
 
-class AddAndDeleteScreen extends Component {
+class AaD extends Component {
 
     state = {
       arr: [15, 57, 80]
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
    }
 });
 
-export default AddAndDeleteScreen;
+export default AaD;

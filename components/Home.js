@@ -11,7 +11,7 @@ const Home = () => {
                     Home
                 </Text>
                 <ButtonToNavi navi={'Main'}/>
-                <ButtonToNavi navi={'Axios'}/>
+                {/*<ButtonToNavi navi={'Axios'}/>*/}
                 {/*<ButtonToNavi navi={'AaD'}/>*/}
                 {/*<ButtonToNavi navi={'Form'}/>*/}
             </View>

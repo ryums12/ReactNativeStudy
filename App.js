@@ -12,7 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef, isReadyRef } from './utils/NavigationService';
 import Home from './components/Home';
 import MainScreen from './components/screens/MainScreen';
-import AddAndDeleteScreen from './components/screens/AddAndDeleteScreen';
+import AaD from './components/screens/AaD';
 import FormScreen from './components/screens/FormScreen';
 import ResultScreen from './components/screens/ResultScreen';
 import AxiosScreen from './components/screens/AxiosScreen';
@@ -36,7 +36,7 @@ const App = () => {
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Main" component={MainScreen} />
-                <Stack.Screen name="AaD" component={AddAndDeleteScreen} />
+                <Stack.Screen name="AaD" component={AaD} />
                 <Stack.Screen name="Form" component={FormScreen}/>
                 <Stack.Screen name="Result" component={ResultScreen}/>
                 <Stack.Screen name="Axios" component={AxiosScreen}/>
