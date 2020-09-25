@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {SafeAreaView, Text, View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
-import ButtonToBack from '../navigations/ButtonToBack';
+import {SafeAreaView, Text, View, ScrollView, StyleSheet} from 'react-native';
 import main from '../../styles/main';
-import ButtonToNavi from '../navigations/ButtonToNavi';
 import * as NavigationService from '../../utils/NavigationService';
+import Pagination from './Pagination';
 
 class Board extends Component {
 
@@ -65,30 +64,49 @@ class Board extends Component {
             ],
             page: 1,
             offset: 0,
+            startPage: 1,
+            lastPage: 5
         };
     }
 
-    // componentDidMount = () => {
-    //     axios.get('http://10.0.0.122:3000/', {
-    //             params: {
-    //                 offset: this.state.offset
-    //             }
-    //         })
-    //         .then(res => {
-    //             if(res.status == 200 || res.status == 201) {
-    //                 this.setState({
-    //                     tableData: res.data
-    //                 })
-    //             } else {
-    //                 alert("실패")
-    //             }
-    //         })
-    //         .catch(err => {
-    //             alert(err);
-    //             NavigationService.navigate('Home')
-    //         });
-    // }
+    componentDidMount = () => {
+        this.getBoardData(1);
+    }
 
+    getBoardData = (page) => {
+        const offset = 10 * (page - 1);
+        this.setState({
+            offset: offset,
+            page: page
+        }, () => {
+            axios.get('http://10.0.0.122:3000/', {
+                params: {
+                    offset: this.state.offset
+                }
+            })
+                .then(res => {
+                    if(res.status == 200 || res.status == 201) {
+                        const pageData = res.data.pageData[0];
+                        const maxPage = parseInt(pageData.total/10);
+                        const startPage = parseInt((this.state.page-1)/5)*5 + 1;
+                        const lastPage = startPage + 4 < maxPage ? startPage + 4 : maxPage;
+
+                        this.setState({
+                            tableData: res.data.tableData,
+                            maxPage: maxPage,
+                            startPage: startPage,
+                            lastPage: lastPage
+                        })
+                    } else {
+                        alert("실패")
+                    }
+                })
+                .catch(err => {
+                    alert(err);
+                    NavigationService.navigate('Home')
+                });
+        });
+    }
 
     render() {
         return (
@@ -105,62 +123,18 @@ class Board extends Component {
                             return (
                                 <View style={[styles.table, styles.borderBottom]}>
                                     <Text style={styles.title}>{data.title}</Text>
-                                    <Text style={styles.regDt}>{data.regDt}</Text>
+                                    <Text style={styles.regDt}>{regDt}</Text>
                                 </View>
                             );
                         })
                     }
-                    <View style={styles.pagination}>
-                        <TouchableOpacity
-                            disabled={this.state.page === 1}
-                            onPress={() => {
-                                alert('테스트');
-                            }}>
-                            <Text style={this.state.page === 1 ? styles.paginationItemDisabled : styles.paginationItem}>&lt;</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {
-                                alert('테스트');
-                            }}
-                        >
-                            <Text style={styles.paginationItemActive}>1</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {
-                                alert('테스트');
-                            }}
-                        >
-                            <Text style={styles.paginationItem}>2</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {
-                                alert('테스트');
-                            }}
-                        >
-                            <Text style={styles.paginationItem}>3</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {
-                                alert('테스트');
-                            }}
-                        >
-                            <Text style={styles.paginationItem}>4</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={ () => {
-                                alert('테스트')
-                            }}
-                        >
-                            <Text style={styles.paginationItem}>5</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={ () => {
-                                alert('테스트')
-                            }}
-                        >
-                            <Text style={styles.paginationItem}>&gt;</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <Pagination
+                        curPage={this.state.page}
+                        startPage={this.state.startPage}
+                        lastPage={this.state.lastPage}
+                        page={this.getBoardData}
+                        maxPage={this.state.maxPage}
+                    />
                 </ScrollView>
                 <View>
                 </View>
@@ -190,48 +164,6 @@ const styles = StyleSheet.create({
         color: 'gray',
         fontSize: 18,
         paddingRight: 10,
-    },
-    pagination: {
-        flexDirection: 'row',
-        padding: 10,
-        justifyContent: 'center',
-    },
-    paginationItem: {
-        height: 40,
-        width: 40,
-        margin: 5,
-        borderRadius: 15,
-        borderWidth: 1,
-        borderColor: 'black',
-        fontSize: 24,
-        textAlign: 'center',
-        textAlignVertical: 'center'
-    },
-    paginationItemActive: {
-        height: 40,
-        width: 40,
-        margin: 5,
-        borderRadius: 15,
-        borderWidth: 1,
-        borderColor: 'black',
-        fontSize: 24,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        backgroundColor: 'blue',
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    paginationItemDisabled: {
-        height: 40,
-        width: 40,
-        margin: 5,
-        borderRadius: 15,
-        borderWidth: 1,
-        borderColor: 'black',
-        fontSize: 24,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        backgroundColor: 'gray'
     }
 });
 
