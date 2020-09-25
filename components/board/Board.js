@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {SafeAreaView, Text, View, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import main from '../../styles/main';
 import * as NavigationService from '../../utils/NavigationService';
 import Pagination from './Pagination';
@@ -119,12 +119,19 @@ class Board extends Component {
                 <ScrollView>
                     {
                         this.state.tableData.map(data => {
+                            const idx = data.idx;
                             const regDt = String(data.reg_dt).substring(0, 10);
                             return (
-                                <View style={[styles.table, styles.borderBottom]}>
-                                    <Text style={styles.title}>{data.title}</Text>
-                                    <Text style={styles.regDt}>{regDt}</Text>
-                                </View>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        alert(idx + "번째 게시글")
+                                    }}
+                                >
+                                    <View style={[styles.table, styles.borderBottom]}>
+                                        <Text style={styles.title}>{data.title}</Text>
+                                        <Text style={styles.regDt}>{regDt}</Text>
+                                    </View>
+                                </TouchableOpacity>
                             );
                         })
                     }
@@ -136,8 +143,6 @@ class Board extends Component {
                         maxPage={this.state.maxPage}
                     />
                 </ScrollView>
-                <View>
-                </View>
             </SafeAreaView>
         );
     }

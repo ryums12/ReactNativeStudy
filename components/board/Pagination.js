@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         textAlign: 'center',
         textAlignVertical: 'center',
-        backgroundColor: 'gray'
+        backgroundColor: 'gray',
+        color:'black'
     }
 });
 
