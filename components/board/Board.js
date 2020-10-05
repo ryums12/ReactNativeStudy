@@ -4,6 +4,7 @@ import {SafeAreaView, Text, View, ScrollView, StyleSheet, TouchableOpacity} from
 import main from '../../styles/main';
 import * as NavigationService from '../../utils/NavigationService';
 import Pagination from './Pagination';
+import pagination from '../../styles/pagination';
 
 class Board extends Component {
 
@@ -123,6 +124,7 @@ class Board extends Component {
                             const regDt = String(data.reg_dt).substring(0, 10);
                             return (
                                 <TouchableOpacity
+                                    key={idx}
                                     onPress={() => {
                                         NavigationService.navigate('Detail', {
                                             idx: idx
@@ -137,13 +139,29 @@ class Board extends Component {
                             );
                         })
                     }
-                    <Pagination
-                        curPage={this.state.page}
-                        startPage={this.state.startPage}
-                        lastPage={this.state.lastPage}
-                        paging={this.getBoardData}
-                        maxPage={this.state.maxPage}
-                    />
+                    <View style={pagination.pagination}>
+                        <TouchableOpacity
+                            disabled={this.state.page === 1}
+                            onPress={() => {
+                                this.getBoardData(this.state.page - 1)
+                            }}>
+                            <Text style={this.state.page === 1 ? pagination.paginationItemDisabled : pagination.paginationItem}>&lt;</Text>
+                        </TouchableOpacity>
+                        <Pagination
+                            curPage={this.state.page}
+                            startPage={this.state.startPage}
+                            lastPage={this.state.lastPage}
+                            paging={this.getBoardData}
+                        />
+                        <TouchableOpacity
+                            disabled={this.state.page === this.state.maxPage}
+                            onPress={() => {
+                                this.getBoardData(this.state.page + 1)
+                            }}
+                        >
+                            <Text style={this.state.page === this.state.maxPage ? pagination.paginationItemDisabled : pagination.paginationItem}>&gt;</Text>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         );
