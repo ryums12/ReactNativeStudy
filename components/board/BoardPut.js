@@ -4,6 +4,7 @@ import {SafeAreaView, View, Text, StyleSheet, ScrollView, TextInput, TouchableOp
 import * as NavigationService from '../../utils/NavigationService';
 import ButtonToBack from '../navigations/ButtonToBack';
 import main from '../../styles/main';
+import form from '../../styles/form';
 
 class BoardPut extends Component {
 
@@ -38,30 +39,30 @@ class BoardPut extends Component {
                     <Text style={main.title}>등록 페이지</Text>
                 </View>
                 <ScrollView>
-                    <View style={style.form}>
-                        <View style={style.inputGroup}>
-                            <View style={style.label}>
-                                <Text style={style.labelText}>제목</Text>
+                    <View style={form.form}>
+                        <View style={form.inputGroup}>
+                            <View style={form.label}>
+                                <Text style={form.labelText}>제목</Text>
                             </View>
                             <TextInput
-                                style={style.input}
+                                style={form.input}
                                 placeholder='제목을 입력해 주십시오.'
                                 onChangeText={title => this.setState({title})}
                                 value={this.state.title}/>
                         </View>
-                        <View style={style.inputGroup}>
-                            <View style={style.label}>
-                                <Text style={style.labelText}>내용</Text>
+                        <View style={form.inputGroup}>
+                            <View style={form.label}>
+                                <Text style={form.labelText}>내용</Text>
                             </View>
                             <TextInput
-                                style={style.input}
+                                style={form.input}
                                 placeholder='내용을 입력해 주십시오.'
                                 onChangeText={note => this.setState({note})}
                                 value={this.state.note}
                             />
                         </View>
                         <TouchableOpacity
-                            style={style.submit}
+                            style={form.submit}
                             onPress={() => {
                                 this.boardPut({
                                     title: this.state.title,
@@ -69,7 +70,7 @@ class BoardPut extends Component {
                                 })
                             }}
                         >
-                            <Text style={style.submitText}>등록</Text>
+                            <Text style={form.submitText}>등록</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
@@ -80,40 +81,5 @@ class BoardPut extends Component {
         );
     }
 }
-
-const style = StyleSheet.create({
-    form: {
-        alignItems: 'center'
-    },
-    inputGroup: {
-        width: '90%'
-    },
-    label: {
-        height: 50,
-        justifyContent: 'center'
-    },
-    labelText: {
-        fontSize: 20,
-        color: 'blue'
-    },
-    input: {
-        borderColor: 'black',
-        borderWidth: 1
-    },
-    submit: {
-        height: 50,
-        width: '90%',
-        backgroundColor: 'blue',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 20,
-        marginTop: 20
-    },
-    submitText: {
-        color: 'white',
-        fontSize: 24,
-        fontWeight: 'bold'
-    }
-});
 
 export default BoardPut;

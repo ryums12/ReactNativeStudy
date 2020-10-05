@@ -15,7 +15,7 @@ class Pagination extends Component {
             <TouchableOpacity
                 disabled={curPage === 1}
                 onPress={() => {
-                    this.props.page(curPage - 1)
+                    this.props.paging(curPage - 1)
                 }}>
                 <Text style={curPage === 1 ? styles.paginationItemDisabled : styles.paginationItem}>&lt;</Text>
             </TouchableOpacity>
@@ -25,7 +25,7 @@ class Pagination extends Component {
                 <TouchableOpacity
                     key={page-1}
                     onPress={() => {
-                        this.props.page(page);
+                        this.props.paging(page);
                     }}
                 >
                     <Text style={page === curPage ? styles.paginationItemActive : styles.paginationItem}>{page}</Text>
@@ -36,7 +36,7 @@ class Pagination extends Component {
             <TouchableOpacity
                 disabled={curPage === maxPage}
                 onPress={() => {
-                    this.props.page(curPage + 1)
+                    this.props.paging(curPage + 1)
                 }}
             >
                 <Text style={curPage === maxPage ? styles.paginationItemDisabled : styles.paginationItem}>&gt;</Text>

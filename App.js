@@ -13,6 +13,7 @@ import { navigationRef, isReadyRef } from './utils/NavigationService';
 import Home from './components/Home';
 import Main from './components/board/Board';
 import BoardPut from './components/board/BoardPut';
+import BoardDetail from './components/board/BoardDetail';
 
 
 // import AaD from './components/screens/AaD';
@@ -40,7 +41,7 @@ const App = () => {
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Main" component={Main} />
                 <Stack.Screen name="Put" component={BoardPut} />
-
+                <Stack.Screen name="Detail" component={BoardDetail} />
                 {/*<Stack.Screen name="AaD" component={AaD} />*/}
                 {/*<Stack.Screen name="Form" component={FormScreen}/>*/}
                 {/*<Stack.Screen name="Result" component={ResultScreen}/>*/}

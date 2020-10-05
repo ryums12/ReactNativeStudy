@@ -124,7 +124,9 @@ class Board extends Component {
                             return (
                                 <TouchableOpacity
                                     onPress={() => {
-                                        alert(idx + "번째 게시글")
+                                        NavigationService.navigate('Detail', {
+                                            idx: idx
+                                        })
                                     }}
                                 >
                                     <View style={[styles.table, styles.borderBottom]}>
@@ -139,7 +141,7 @@ class Board extends Component {
                         curPage={this.state.page}
                         startPage={this.state.startPage}
                         lastPage={this.state.lastPage}
-                        page={this.getBoardData}
+                        paging={this.getBoardData}
                         maxPage={this.state.maxPage}
                     />
                 </ScrollView>
