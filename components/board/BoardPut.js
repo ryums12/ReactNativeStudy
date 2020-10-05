@@ -17,7 +17,7 @@ class BoardPut extends Component {
     }
 
     boardPut = (params) => {
-        axios.put('http://10.0.0.122:3000/boards', {
+        axios.post('http://10.0.0.122:3000/boards', {
             title: params.title,
             note: params.note
         })
@@ -74,9 +74,6 @@ class BoardPut extends Component {
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
-                <View style={{alignItems: 'center'}}>
-                    <ButtonToBack/>
-                </View>
             </SafeAreaView>
         );
     }
