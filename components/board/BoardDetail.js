@@ -4,20 +4,20 @@ import main from '../../styles/main';
 import form from '../../styles/form';
 import axios from 'axios';
 import * as NavigationService from '../../utils/NavigationService';
+import { StackActions } from '@react-navigation/native';
 
 class BoardDetail extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            idx: this.props.route.params.idx,
             title: 'Default title',
             note: 'Default note'
         }
     }
 
     componentDidMount = () => {
-        axios.get('http://10.0.0.122:3000/boards/' + this.state.idx)
+        axios.get('http://10.0.0.122:3000/boards/' + this.props.route.params.idx)
             .then(res => {
                 if(res.status == 200 || res.status == 201) {
                     const data = res.data[0]
@@ -35,12 +35,47 @@ class BoardDetail extends Component {
             })
     }
 
+    boardUpdate = () => {
+        axios.put('http://10.0.0.122:3000/boards/' + this.props.route.params.idx, {
+            title: this.state.title,
+            note: this.state.note
+        })
+            .then(res => {
+                if(res.status == 200 || res.status == 201) {
+                    alert("수정 성공")
+                } else {
+                    alert("수정 실패")
+                }
+            })
+            .catch(err => {
+                alert(err)
+                NavigationService.goBack()
+            })
+    }
+
+    boardDelete = () => {
+        axios.delete('http://10.0.0.122:3000/boards/' + this.props.route.params.idx)
+            .then(res => {
+                if(res.status == 200 || res.status == 201) {
+                    alert("삭제 성공")
+                    const action = StackActions.pop(1)
+                    this.props.navigation.dispatch(action)
+                } else {
+                    alert("삭제 실패")
+                }
+            })
+            .catch(err => {
+                alert(err)
+                NavigationService.goBack()
+            })
+    }
+
     render() {
         return (
             <SafeAreaView style={main.container}>
                 <View style={main.header}>
                     <Text style={main.title}>
-                        Detail of {this.state.idx}
+                        Detail of {this.props.route.params.idx}
                     </Text>
                 </View>
                 <ScrollView>
@@ -51,7 +86,6 @@ class BoardDetail extends Component {
                             </View>
                             <TextInput
                                 style={form.input}
-                                placeholder='제목을 입력해 주십시오.'
                                 onChangeText={title => this.setState({title})}
                                 value={this.state.title}
                             />
@@ -62,7 +96,6 @@ class BoardDetail extends Component {
                             </View>
                             <TextInput
                                 style={form.input}
-                                placeholder='내용을 입력해 주십시오.'
                                 onChangeText={note => this.setState({note})}
                                 value={this.state.note}
                             />
@@ -73,7 +106,7 @@ class BoardDetail extends Component {
                     <TouchableOpacity
                         style={[styles.button, styles.update]}
                         onPress={() => {
-                            alert('준비 중...')
+                            this.boardUpdate()
                         }}
                     >
                         <Text style={form.submitText}>수정</Text>
@@ -81,7 +114,7 @@ class BoardDetail extends Component {
                     <TouchableOpacity
                         style={[styles.button, styles.delete]}
                         onPress={() => {
-                            alert('준비 중...')
+                            this.boardDelete()
                         }}
                     >
                         <Text style={form.submitText}>삭제</Text>

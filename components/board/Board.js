@@ -20,7 +20,11 @@ class Board extends Component {
     }
 
     componentDidMount = () => {
-        this.getBoardData(1);
+        this.willFocusSubscription = this.props.navigation.addListener('focus',
+            () => {
+                this.getBoardData(1)
+            }
+        )
     }
 
     getBoardData = (page) => {
