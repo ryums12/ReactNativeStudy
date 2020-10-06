@@ -11,58 +11,7 @@ class Board extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableData: [
-                {
-                    idx: 1,
-                    title: '테스트 제목',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 2,
-                    title: '테스트 제목 2',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 3,
-                    title: '테스트 제목 3',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 4,
-                    title: '테스트 제목 4',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 5,
-                    title: '테스트 제목 5',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 6,
-                    title: '테스트 제목 6',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 7,
-                    title: '테스트 제목 7',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 8,
-                    title: '테스트 제목 8',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 9,
-                    title: '테스트 제목 9',
-                    regDt: '2020-XX-XX',
-                },
-                {
-                    idx: 10,
-                    title: '테스트 제목 10',
-                    regDt: '2020-XX-XX',
-                },
-            ],
+            tableData: '',
             page: 1,
             offset: 0,
             startPage: 1,
@@ -119,6 +68,7 @@ class Board extends Component {
                 </View>
                 <ScrollView>
                     {
+                        this.state.tableData ?
                         this.state.tableData.map(data => {
                             const idx = data.idx;
                             const regDt = String(data.reg_dt).substring(0, 10);
@@ -138,30 +88,39 @@ class Board extends Component {
                                 </TouchableOpacity>
                             );
                         })
+                            :
+                            <View>
+                                <Text>Loading...</Text>
+                            </View>
                     }
-                    <View style={pagination.pagination}>
-                        <TouchableOpacity
-                            disabled={this.state.page === 1}
-                            onPress={() => {
-                                this.getBoardData(this.state.page - 1)
-                            }}>
-                            <Text style={this.state.page === 1 ? pagination.paginationItemDisabled : pagination.paginationItem}>&lt;</Text>
-                        </TouchableOpacity>
-                        <Pagination
-                            curPage={this.state.page}
-                            startPage={this.state.startPage}
-                            lastPage={this.state.lastPage}
-                            paging={this.getBoardData}
-                        />
-                        <TouchableOpacity
-                            disabled={this.state.page === this.state.maxPage}
-                            onPress={() => {
-                                this.getBoardData(this.state.page + 1)
-                            }}
-                        >
-                            <Text style={this.state.page === this.state.maxPage ? pagination.paginationItemDisabled : pagination.paginationItem}>&gt;</Text>
-                        </TouchableOpacity>
-                    </View>
+                    {
+                        this.state.tableData ?
+                            <View style={pagination.pagination}>
+                                <TouchableOpacity
+                                    disabled={this.state.page === 1}
+                                    onPress={() => {
+                                        this.getBoardData(this.state.page - 1)
+                                    }}>
+                                    <Text style={this.state.page === 1 ? pagination.paginationItemDisabled : pagination.paginationItem}>&lt;</Text>
+                                </TouchableOpacity>
+                                <Pagination
+                                    curPage={this.state.page}
+                                    startPage={this.state.startPage}
+                                    lastPage={this.state.lastPage}
+                                    paging={this.getBoardData}
+                                />
+                                <TouchableOpacity
+                                    disabled={this.state.page === this.state.maxPage}
+                                    onPress={() => {
+                                        this.getBoardData(this.state.page + 1)
+                                    }}
+                                >
+                                    <Text style={this.state.page === this.state.maxPage ? pagination.paginationItemDisabled : pagination.paginationItem}>&gt;</Text>
+                                </TouchableOpacity>
+                            </View>
+                            :
+                            <View></View>
+                    }
                 </ScrollView>
             </SafeAreaView>
         );

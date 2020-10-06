@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {SafeAreaView, View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import * as NavigationService from '../../utils/NavigationService';
-import ButtonToBack from '../navigations/ButtonToBack';
 import main from '../../styles/main';
 import form from '../../styles/form';
 
