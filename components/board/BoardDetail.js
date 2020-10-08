@@ -148,4 +148,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BoardDetail;
+// const mapDispatchToProps = dispatch => ({
+//     updatePageData: page => dispatch(setPage(page))
+// });
+//
+// export default connect(undefined, mapDispatchToProps)(BoardDetail);
+
+export default BoardDetail

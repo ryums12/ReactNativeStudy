@@ -15,10 +15,18 @@ ReactNativeStudy
                 - JustText - 동적 추가 및 삭제용 컴포넌트
         - **Board**
             - BoardPut - 등록
-            - BoardWindow - 메인 화면        
+            - Board - 메인 화면  
+            - BoardDetail - 게시판 조회
+            - Pagination - pagination 컴포넌트      
 
 - **utils**
     - NavigationService - 네비게이션 이벤트 관리
     
 - **styles** 
     - **.js - css 관리
+
+- **redux**
+    - actions - redux action 관리
+    - constants - redux action type 관리
+    - reducers - redux reducer 관리
+    - store.js - redux store
