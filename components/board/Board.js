@@ -12,6 +12,7 @@ class Board extends Component {
 
     constructor(props) {
         super(props);
+        this.props.board.page = 1;
     }
 
     componentDidMount = () => {
@@ -96,30 +97,44 @@ class Board extends Component {
                     }
                     {
                         this.props.board.tableData ?
-                            <View style={pagination.pagination}>
-                                <TouchableOpacity
-                                    disabled={this.props.board.page === 1}
-                                    onPress={() => {
-                                        this.getBoardData(this.props.board.page - 1);
-                                    }}>
-                                    <Text
-                                        style={this.props.board.page === 1 ? pagination.paginationItemDisabled : pagination.paginationItem}>&lt;</Text>
-                                </TouchableOpacity>
-                                <Pagination
-                                    curPage={this.props.board.page}
-                                    startPage={this.props.board.startPage}
-                                    lastPage={this.props.board.lastPage}
-                                    paging={this.getBoardData}
-                                />
-                                <TouchableOpacity
-                                    disabled={this.props.board.page === this.props.board.maxPage}
-                                    onPress={() => {
-                                        this.getBoardData(this.props.board.page + 1);
-                                    }}
-                                >
-                                    <Text
-                                        style={this.props.board.page === this.props.board.maxPage ? pagination.paginationItemDisabled : pagination.paginationItem}>&gt;</Text>
-                                </TouchableOpacity>
+                            <View>
+                                <View style={styles.inputButtonArea}>
+                                    <TouchableOpacity
+                                        style={styles.inputButton}
+                                        onPress={() => {
+                                            NavigationService.navigate('Put',null)
+                                        }}
+                                    >
+                                        <View>
+                                            <Text style={styles.inputButtonText}>글쓰기</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={pagination.pagination}>
+                                    <TouchableOpacity
+                                        disabled={this.props.board.page === 1}
+                                        onPress={() => {
+                                            this.getBoardData(this.props.board.page - 1);
+                                        }}>
+                                        <Text
+                                            style={this.props.board.page === 1 ? pagination.paginationItemDisabled : pagination.paginationItem}>&lt;</Text>
+                                    </TouchableOpacity>
+                                    <Pagination
+                                        curPage={this.props.board.page}
+                                        startPage={this.props.board.startPage}
+                                        lastPage={this.props.board.lastPage}
+                                        paging={this.getBoardData}
+                                    />
+                                    <TouchableOpacity
+                                        disabled={this.props.board.page === this.props.board.maxPage}
+                                        onPress={() => {
+                                            this.getBoardData(this.props.board.page + 1);
+                                        }}
+                                    >
+                                        <Text
+                                            style={this.props.board.page === this.props.board.maxPage ? pagination.paginationItemDisabled : pagination.paginationItem}>&gt;</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                             :
                             <View></View>
@@ -152,6 +167,24 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingRight: 10,
     },
+    inputButtonArea: {
+        padding: 5,
+        bottom: -10,
+        alignItems: 'flex-end'
+    },
+    inputButton: {
+        width: '30%',
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#0CEDFA',
+        borderRadius: 20
+    },
+    inputButtonText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'white'
+    }
 });
 
 const mapStateToProps = (state) => ({board: state.board});
